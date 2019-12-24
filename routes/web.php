@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get("/read", function(){
+ // Modelのクラスを指定
+ return [
+  // "posts" => \App\Post::all()
+  "post" => \App\Post::where("id",">",1)->get()
+ ];
+});
