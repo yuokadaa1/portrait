@@ -39,6 +39,7 @@ use App\Post;
     "性別" => "男性",
     "血液型" => "A型",
     "血液型" => "A型",
+    $folderPath
     // $gazo
    )
   ];
