@@ -79,6 +79,8 @@
                 </div>
             @endif
 
+            <img src="storage\app\images\ninja_woman_face1_smile.png">
+
             <div class="content">
                 <div class="title m-b-md">
                     Laravel

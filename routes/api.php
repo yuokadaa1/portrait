@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,12 @@ use Illuminate\Http\Request;
 // });
 
  Route::get("/data", function(){
+  // $foderPath = Post::select('modelId','modelIdNum','folderPath','date')->get();
+  // $foderPath = Post::select('modelId','modelIdNum','folderPath','date')->first();
+  $folderPath = Post::select('folderPath')->first();
+  // $gazo = base64_encode(file_get_contents($folderPath->folderPath));
+  // $folderPath->folderPath
+  // storage\\app\\images\\ninja_woman_face1_smile.png
   $responseHeaders = [
    "X-Pages" => 1
   ];
@@ -32,7 +39,7 @@ use Illuminate\Http\Request;
     "性別" => "男性",
     "血液型" => "A型",
     "血液型" => "A型",
-    "post" => \App\Post::where("id",">",1)->get()
+    // $gazo
    )
   ];
   $statusCode = 201;
