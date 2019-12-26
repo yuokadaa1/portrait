@@ -29,7 +29,7 @@ use App\Post;
   // $foderPath = Post::select('modelId','modelIdNum','folderPath','date')->first();
   $folderPath = Post::select('folderPath')->first();
   // $gazo = base64_encode(file_get_contents($folderPath->folderPath));
-  $gazo = base64_encode(file_get_contents('storage/app/images/ninja_woman_face1_smile.png'));
+  $gazo = base64_encode(file_get_contents({{ asset('storage/app/images/ninja_woman_face1_smile.png') }}));
   // $folderPath->folderPath
   // storage\\app\\images\\ninja_woman_face1_smile.png
   $responseHeaders = [
