@@ -79,7 +79,9 @@
                 </div>
             @endif
 
-            <img src="storage\app\images\ninja_woman_face1_smile.png">
+            <!-- <img src="storage\app\images\ninja_woman_face1_smile.png"> -->
+            <img alt="忍者の画像" src="{{ asset('storage/app/images/ninja_woman_face1_smile.png') }}">
+            <img alt="忍者の画像2" src="public/ninja_woman_face1_smile.png">
 
             <div class="content">
                 <div class="title m-b-md">
