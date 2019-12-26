@@ -43,7 +43,7 @@ use App\Post;
     // $gazo
    )
   ];
-  $statusCode = 222;
+  $statusCode = 200;
   return response()->json($responseBody, $statusCode, $responseHeaders,JSON_UNESCAPED_UNICODE);
 
  });
