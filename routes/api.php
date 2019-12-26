@@ -42,7 +42,7 @@ use App\Post;
     "性別" => "男性",
     "血液型" => "A型",
     "血液型" => "A型",
-    $gazo
+    "画像" => $gazo
    )
   ];
   $statusCode = 200;
