@@ -83,6 +83,7 @@
             <img alt="忍者の画像" src="{{ asset('storage/app/images/ninja_woman_face1_smile.png') }}">
             <img alt="忍者の画像2" src="ninja_woman_face1_smile.png">
             <img alt="忍者の画像3" src="{{ asset('ninja_woman_face1_smile.png')}}">
+            <img alt="忍者の画像3" src="{{ asset('public/ninja_woman_face1_smile.png')}}">
 
             <div class="content">
                 <div class="title m-b-md">
