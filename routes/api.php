@@ -30,8 +30,12 @@ use App\Post;
   $folderPath = Post::select('folderPath')->first();
   // $gazo = base64_encode(file_get_contents($folderPath->folderPath));
   // $gazo = base64_encode(file_get_contents(asset('storage/app/images/ninja_woman_face1_smile.png')));
-  // 読み込み自体はできた
-  $gazo = base64_encode(asset('images/ninja_woman_face1_smile.png'));
+
+  // 読み込み自体はできた->これでencodeされるのは画像のURL
+  // $gazo = base64_encode(asset('images/ninja_woman_face1_smile.png'));
+
+  $gazo = base64_encode(file_get_contents(asset('images/ninja_woman_face1_smile.png')));
+
   // $folderPath->folderPath
   // storage\\app\\images\\ninja_woman_face1_smile.png
   $responseHeaders = [
