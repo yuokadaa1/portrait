@@ -6,7 +6,7 @@ use App\Post;
 class InsertDemoController extends Controller
 {
   public function getIndex(){
-    $posts = Post::orderBy('created_at', 'desc')->paginate(2);;
+    $posts = Post::orderBy('created_at', 'desc')->paginate(5);;
     // return view('insert.index')
     return view('insert.index',compact('posts'));;
   }

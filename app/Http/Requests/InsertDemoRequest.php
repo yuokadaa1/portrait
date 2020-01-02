@@ -24,6 +24,8 @@ class InsertDemoRequest extends FormRequest{
        'username'=>'required',
        'mail'=>'required|email',
        'age'=>'required|numeric',
+       //  'username'=>'required',
+       //  'thum'=>'required|image',
        ];
      }
 
@@ -32,6 +34,8 @@ class InsertDemoRequest extends FormRequest{
        "required" => "必須項目です。",
        "email" => "メールアドレスの形式で入力してください。",
        "numeric" => "数値で入力してください。",
+       // "required" => "必須項目です。",
+       // "image" => "指定されたファイルが画像(jpg、png、bmp、gif、svg)ではありません。",
        ];
     }
 
