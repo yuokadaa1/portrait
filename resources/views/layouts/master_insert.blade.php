@@ -7,9 +7,9 @@
   <title>@yield('title')</title>
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" /> -->
-  <link href="css/bootstrap.min.css" rel="stylesheet"><!--Bootstrap theme(Starter)-->
-  <link href="css/flat-ui.min.css" rel="stylesheet"><!--Bootstrap theme(Starter)-->
-  <link href="css/starter-template.css" rel="stylesheet"><!--Bootstrap theme(Starter)-->
+  <link href="/css/bootstrap.min.css" rel="stylesheet"><!--Bootstrap theme(Starter)-->
+  <link href="/css/flat-ui.min.css" rel="stylesheet"><!--Bootstrap theme(Starter)-->
+  <link href="/css/starter-template.css" rel="stylesheet"><!--Bootstrap theme(Starter)-->
   <link rel="shortcut icon" href="{{ url('/') }}/dist/img/favicon.ico">
 
   <!--[if lt IE 9]>
