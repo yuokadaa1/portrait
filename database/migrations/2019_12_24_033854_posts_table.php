@@ -16,16 +16,17 @@ class PostsTable extends Migration
         Schema::create('Posts', function (Blueprint $table) {
           $table->increments('id');
           $table->smallInteger('modelId');
-          $table->string('modelName')->default('');
+          // $table->string('modelName')->default('');
           $table->smallInteger('modelIdNum');
           $table->smallInteger('kbnId')->default(0);
-          $table->string('kbnName')->default('');
+          // $table->string('kbnName')->default('');
           $table->string('folderPath')->nullable();
           $table->date('date')->nullable();
           $table->boolean('publishFlg')->default(false);
           $table->timestamps();
 
           $table->unique(['modelId', 'modelIdNum']);
+          $table->index('kbnId');
         });
     }
 

@@ -1,14 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Post;
 
-class InsertDemoController extends Controller
-{
+use App\Post;
+use App\Modelid;
+use App\Modelkbn;
+use Illuminate\Support\Facades\DB;
+
+class InsertDemoController extends Controller{
+
   public function getIndex(){
-    $posts = Post::orderBy('created_at', 'desc')->paginate(5);;
-    // return view('insert.index')
-    return view('insert.index',compact('posts'));;
+
+    //postsの最大値をつけておく。※書き方が面倒なので直接SQLで記載。
+    $modelids = DB::select("SELECT b.modelId,b.modelName,a.maxModelIdNum FROM modelids as b left outer join (SELECT modelId,MAX(modelIdNum) as maxModelIdNum FROM posts group by modelId) as a on b.modelId = a.modelId ");
+
+    $modelkbns = Modelkbn::select('kbnId','kbnName')->orderBy('created_at', 'desc')->get();
+
+    return view('insert.index',compact('modelids','modelkbns'));
   }
 
   public function confirm(\App\Http\Requests\InsertDemoRequest $request){

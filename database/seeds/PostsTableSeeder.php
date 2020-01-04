@@ -19,23 +19,43 @@ class PostsTableSeeder extends Seeder
             ['modelId' => 1,
              'modelIdNum' => 1,
              'folderPath' => 'images/ninja_woman_face1_smile.png',
-             'date' => '2019-10-08',
+             'date' => '2019-10-08'
             ],
             ['modelId' => 1,
              'modelIdNum' => 2,
              'folderPath' => 'images/ninja_woman_face2_angry.png',
-             'date' => '2019-10-08',
+             'date' => '2019-10-08'
             ],
             ['modelId' => 1,
              'modelIdNum' => 3,
              'folderPath' => 'images/ninja_woman_face3_sad.png',
-             'date' => '2019-10-08',
+             'date' => '2019-10-08'
             ],
             ['modelId' => 1,
              'modelIdNum' => 4,
              'folderPath' => 'images/ninja_woman_face4_laugh.png',
-             'date' => '2019-10-08',
-            ]
+             'date' => '2019-10-08'
+            ],
+            ['modelId' => 2,
+             'modelIdNum' => 1,
+             'folderPath' => 'images/ninja_woman_face4_laugh.png',
+             'date' => '2019-10-08'
+            ],
+            ['modelId' => 2,
+             'modelIdNum' => 2,
+             'folderPath' => 'images/ninja_woman_face4_laugh.png',
+             'date' => '2019-10-08'
+            ],
+            ['modelId' => 2,
+             'modelIdNum' => 3,
+             'folderPath' => 'images/ninja_woman_face4_laugh.png',
+             'date' => '2019-10-08'
+            ],
+             ['modelId' => 3,
+              'modelIdNum' => 1,
+              'folderPath' => 'images/ninja_woman_face4_laugh.png',
+              'date' => '2019-10-08'
+             ]
           ];
 
           // 登録

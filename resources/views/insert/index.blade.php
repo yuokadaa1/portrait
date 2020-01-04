@@ -39,20 +39,28 @@
 
   <table class="table table-striped">
     <thead>
-      <tr><th scope="col">名前</th><th scope="col">メールアドレス</th><th scope="col">年齢</th></tr>
+      <tr><th scope="col">モデルＩＤ</th><th scope="col">モデル名</th><th scope="col">写真数</th></tr>
      </thead>
      <tbody>
-       @foreach ($posts as $post)
+       @foreach ($modelids as $modelid)
         <tr>
-          <td>{{ $post->modelId }}</td><td>{{ $post->modelIdNum }}</td><td>{{ $post->kbnId }}</td>
+          <td>{{ $modelid->modelId }}</td><td>{{ $modelid->modelName }}</td><td>{{ $modelid->maxModelIdNum }}</td>
         </tr>
        @endforeach
      </tbody>
    </table>
-
-   <div class="text-center">
-     {{ $posts->links() }}
-   </div>
+   <table class="table table-striped">
+     <thead>
+       <tr><th scope="col">区分ＩＤ</th><th scope="col">区分名</th></tr>
+      </thead>
+      <tbody>
+        @foreach ($modelkbns as $modelkbn)
+         <tr>
+           <td>{{ $modelkbn->kbnId }}</td><td>{{ $modelkbn->kbnName }}</td>
+         </tr>
+        @endforeach
+      </tbody>
+    </table>
 
 </form>
 @endsection
