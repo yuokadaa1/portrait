@@ -26,20 +26,8 @@ Route::get("/read", function(){
 // Route::get('/home', 'HomeController@index');
 // Route::post('/home/upload', 'HomeController@upload');
 
-# 入力画面
-Route::get('request/', [
-  'uses' => 'InsertDemoController@getIndex',
-  'as' => 'insert.index'
-]);
-
-# 確認画面
-Route::post('request/confirm', [
-  'uses' => 'InsertDemoController@confirm',
-  'as' => 'insert.confirm'
-]);
-
-# 完了画面
-Route::post('insert/finish', [
-  'uses' => 'InsertDemoController@finish',
-  'as' => 'insert.finish'
-]);
+Route::get('/request','InsertDemoController@getIndex');
+Route::post('/request/confirm', 'InsertDemoController@confirm');
+Route::post('/request/finish', 'InsertDemoController@finish');
+Route::post('/request/id', 'InsertDemoController@idInsert');
+Route::post('/request/kbn', 'InsertDemoController@kbnInsert');
