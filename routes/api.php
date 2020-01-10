@@ -46,7 +46,7 @@ use App\Post;
     // $httpResponse['kbnName'] = $value['kbnName'];
     $httpResponse['images'] = file_get_contents(asset($value['folderPath']));
     // $httpResponse['images'] = file_get_contents(asset('images/ninja_woman_face1_smile.png'));
-    dd($httpResponse);
+    // dd($httpResponse);
     array_push($responseBody,$httpResponse);
     // $responseBody.push($httpResponse);
   }
