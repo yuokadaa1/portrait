@@ -30,7 +30,7 @@ use App\Post;
   $Post = Post::select('modelId','modelIdNum','kbnId','folderPath','created_at')->orderBy('kbnId', 'asc')->orderBy('created_at', 'desc')->first()->toArray();
 
   //assetでの読み込み=public => public/storageにデータを格納、呼び出しが必要。
-  dd(base64_decode(file_get_contents(asset('storage\photo1_1.png'))));
+  dd(file_get_contents(asset('storage\photo1_1.png')));
 
   $responseBody = array();
   foreach ($Post as & $value) {
