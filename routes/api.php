@@ -25,23 +25,28 @@ use App\Post;
 // });
 
  Route::get("/data", function(){
-  // $foderPath = Post::select('modelId','modelIdNum','folderPath','date')->get();
-  // $foderPath = Post::select('modelId','modelIdNum','folderPath','date')->first();
 
-  // $folderPath = Post::select('folderPath')->first();
-  // $gazo = base64_encode(file_get_contents($folderPath->folderPath));
-  // $gazo = base64_encode(file_get_contents(asset('storage/app/images/ninja_woman_face1_smile.png')));
-  $Post = Post::all()->toArray();
+   //dBから情報を抽出して取得
+  $Post = Post::select('modelId','modelIdNum','kbnId','folderPath','created_at')->orderBy('kbnId', 'asc')->orderBy('created_at', 'desc')->first()->toArray();
+
+  //これで読み込まれるもの「storage\app\images\ninja_woman_face2_angry.png」
+  // $gazo = base64_encode(asset('ninja_woman_face2_angry.png'));
+  // $gazo = base64_encode(file_get_contents('storage\app\public\ninja_woman_face2_angry.png'));
+
+  $gazo = asset('ninja_woman_face2_angry.png');
+  // $gazo = base64_encode(file_get_contents(asset('ninja_woman_face2_angry.png')));
+  dd($gazo);
   $responseBody = array();
   foreach ($Post as & $value) {
     $httpResponse = array();
-    $httpResponse['id'] = $value['id'];
     $httpResponse['modelId'] = $value['modelId'];
-    $httpResponse['modelName'] = $value['modelName'];
+    // $httpResponse['modelName'] = $value['modelName'];
     $httpResponse['modelIdNum'] = $value['modelIdNum'];
     $httpResponse['kbnId'] = $value['kbnId'];
-    $httpResponse['kbnName'] = $value['kbnName'];
-    // $httpResponse['images'] = base64_encode(file_get_contents(asset($value['folderPath'])));
+    // $httpResponse['kbnName'] = $value['kbnName'];
+    $httpResponse['images'] = file_get_contents(asset($value['folderPath']));
+    // $httpResponse['images'] = file_get_contents(asset('images/ninja_woman_face1_smile.png'));
+    dd($httpResponse);
     array_push($responseBody,$httpResponse);
     // $responseBody.push($httpResponse);
   }

@@ -6,8 +6,8 @@ use App\Post;
 use App\Modelid;
 use App\Modelkbn;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class InsertDemoController extends Controller{
 
@@ -34,7 +34,14 @@ class InsertDemoController extends Controller{
       // $file_name = $index->getClientOriginalName();
       $modelIdNum = Post::where('modelId',  $request->modelId)->max('modelIdNum') + 1;
       $file_name = "photo" . $request->modelId ."_". $modelIdNum . "." .$index->guessExtension() ;
-      $folderPath = $index->storeAs('public',$file_name);
+      // storeas は stringにしか使えない（base64はNGの）模様
+      // $folderPath = $index->storeAs('public',$file_name);
+      $image = base64_encode(file_get_contents($index->getRealPath()));
+
+      //これで書き込まれるものは「storage\app\」配下
+      Storage::disk("local")->put("public/" . $file_name,$image);
+      $folderPath = "public/" . $file_name;
+
       //格納した位置情報などをDBに格納
       $post = new Post();
       $post->modelId = $request->modelId;
