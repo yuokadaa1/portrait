@@ -29,13 +29,8 @@ use App\Post;
    //dBから情報を抽出して取得
   $Post = Post::select('modelId','modelIdNum','kbnId','folderPath','created_at')->orderBy('kbnId', 'asc')->orderBy('created_at', 'desc')->first()->toArray();
 
-  //これで読み込まれるもの「storage\app\images\ninja_woman_face2_angry.png」
-  // $gazo = base64_encode(asset('ninja_woman_face2_angry.png'));
-  // $gazo = base64_encode(file_get_contents('storage\app\public\ninja_woman_face2_angry.png'));
-
-  // $gazo = asset('ninja_woman_face2_angry.png');
-  // $gazo = base64_encode(file_get_contents(asset('ninja_woman_face2_angry.png')));
-  dd(base64_encode(file_get_contents(asset('images/ninja_woman_face1_smile.png'))));
+  //assetでの読み込み=public => public/storageにデータを格納、呼び出しが必要。
+  dd(base64_decode(file_get_contents(asset('storage\photo1_1.png'))));
 
   $responseBody = array();
   foreach ($Post as & $value) {
@@ -51,15 +46,13 @@ use App\Post;
     array_push($responseBody,$httpResponse);
     // $responseBody.push($httpResponse);
   }
-  // dd($responseBody);
 
   // 読み込み自体はできた->これでencodeされるのは画像のURL
   // $gazo = base64_encode(asset('images/ninja_woman_face1_smile.png'));
-  //　これで「storage\app\images\ninja_woman_face1_smile.png」を読み込む。
+
+  //　これで「public\images\ninja_woman_face1_smile.png」を読み込む。
   // $gazo = base64_encode(file_get_contents(asset('images/ninja_woman_face1_smile.png')));
 
-  // $folderPath->folderPath
-  // storage\\app\\images\\ninja_woman_face1_smile.png
   $responseHeaders = [
    "X-Pages" => 1
   ];
