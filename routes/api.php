@@ -33,9 +33,9 @@ use App\Post;
   // $gazo = base64_encode(asset('ninja_woman_face2_angry.png'));
   // $gazo = base64_encode(file_get_contents('storage\app\public\ninja_woman_face2_angry.png'));
 
-  $gazo = asset('ninja_woman_face2_angry.png');
+  // $gazo = asset('ninja_woman_face2_angry.png');
   // $gazo = base64_encode(file_get_contents(asset('ninja_woman_face2_angry.png')));
-  dd($gazo);
+  // dd($gazo);
   $responseBody = array();
   foreach ($Post as & $value) {
     $httpResponse = array();
