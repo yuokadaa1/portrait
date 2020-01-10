@@ -44,6 +44,7 @@ use App\Post;
     $httpResponse['modelIdNum'] = $value['modelIdNum'];
     $httpResponse['kbnId'] = $value['kbnId'];
     // $httpResponse['kbnName'] = $value['kbnName'];
+    dd(asset($value['folderPath']));
     $httpResponse['images'] = file_get_contents(asset($value['folderPath']));
     // $httpResponse['images'] = file_get_contents(asset('images/ninja_woman_face1_smile.png'));
     // dd($httpResponse);
