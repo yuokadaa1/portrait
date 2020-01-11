@@ -81,6 +81,13 @@
 
             <!-- このフォルダだとアドレス指定で取得できてしまうので本番稼働時はセキュリティかけて移動する -->
             <img alt="忍者の画像3" src="{{ asset('images/ninja_woman_face1_smile.png')}}">
+            <img alt="忍者の画像４" src="{{ asset('storage/ninja_woman_face3_sad.png')}}">
+            <img alt="忍者の画像５" src="{{ asset('storage/photo1_5.png')}}">
+
+            <!-- <img alt="忍者の画像４" src="data:image/png;base64,{{ asset('storage/photo1_2.png')  }}"> -->
+            <!-- <div class="minus"> -->
+            <!-- <img src="data:image/png;base64,<?php echo asset('storage/photo1_2.png'); ?>" -->
+            <!-- </div> -->
 
             <div class="content">
                 <div class="title m-b-md">

@@ -36,10 +36,15 @@ class InsertDemoController extends Controller{
       $file_name = "photo" . $request->modelId ."_". $modelIdNum . "." .$index->guessExtension() ;
       // storeas は stringにしか使えない（base64はNGの）模様
       // $folderPath = $index->storeAs('public',$file_name);
-      $image = base64_encode(file_get_contents($index->getRealPath()));
+
+      //本当は格納時点でbase64したいのだが、格納後解凍がうまくいかないので素のままにする。
+      // $image = base64_encode(file_get_contents($index->getRealPath()));
+      $image = file_get_contents($index->getRealPath());
 
       //これで書き込まれるものは「storage\app\」配下
-      Storage::disk("local")->put("storage/" . $file_name,$image);
+      Storage::disk("local")->put("public/" . $file_name,$image);
+      // $folderPath = "storage/app/public/" . $file_name;
+      // pathはシンボリックリンクのほうをせていする。
       $folderPath = "storage/" . $file_name;
 
       //格納した位置情報などをDBに格納
