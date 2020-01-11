@@ -39,8 +39,8 @@ class InsertDemoController extends Controller{
       $image = base64_encode(file_get_contents($index->getRealPath()));
 
       //これで書き込まれるものは「storage\app\」配下
-      Storage::disk("local")->put("public/" . $file_name,$image);
-      $folderPath = "public/" . $file_name;
+      Storage::disk("local")->put("storage/" . $file_name,$image);
+      $folderPath = "storage/" . $file_name;
 
       //格納した位置情報などをDBに格納
       $post = new Post();
