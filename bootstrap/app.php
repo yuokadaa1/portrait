@@ -17,6 +17,21 @@ $app = new Illuminate\Foundation\Application(
 
 /*
 |--------------------------------------------------------------------------
+| 環境によって読み込む.envファイル切り替え
+|--------------------------------------------------------------------------
+*/
+// ??:null合体演算子:$_SERVER['SERVER_NAME'] is null の場合 'localhost'
+switch ($_SERVER['SERVER_NAME'] ?? 'localhost') {
+    case 'portrait531.herokuapp.com':
+        $app->loadEnvironmentFrom('.env.prod');
+        break;
+    case 'localhost':
+        $app->loadEnvironmentFrom('.env.local');
+        break;
+}
+
+/*
+|--------------------------------------------------------------------------
 | Bind Important Interfaces
 |--------------------------------------------------------------------------
 |
