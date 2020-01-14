@@ -48,7 +48,6 @@ use App\Post;
     array_push($responseBody,$httpResponse);
   }
 
-  dd($responseBody);
   // 読み込み自体はできた->これでencodeされるのは画像のURL
   // $gazo = base64_encode(asset('images/ninja_woman_face1_smile.png'));
 
