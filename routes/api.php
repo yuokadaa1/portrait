@@ -29,6 +29,7 @@ use App\Post;
    //dBから情報を抽出して取得
   $Post = Post::select('modelId','modelIdNum','kbnId','folderPath','created_at')->orderBy('kbnId', 'asc')->orderBy('created_at', 'desc')->get()->toarray();
 
+  //理由は不明だが、apiの時はasset()を使うと読み込めない？下で実験したときはできたんだがなぁ？
   $responseBody = array();
   foreach ($Post as $value) {
     $httpResponse = array();
@@ -38,14 +39,10 @@ use App\Post;
     $httpResponse['kbnId'] = $value['kbnId'];
     // $httpResponse['kbnName'] = $value['kbnName'];
 
-    if (file_exists(asset($value['folderPath']))) {
-    // if (file_exists("public\storage\photo1_2.png")) {
-      // ファイルが存在したら、ファイル名を付けて存在していると表示
-      $httpResponse['images'] = file_get_contents(asset($value['folderPath']));
-      // public$httpResponse['images'] = file_get_contents("public\storage\photo1_2.png");
+    if (file_exists($value['folderPath'])) {
+      $httpResponse['images'] = file_get_contents($value['folderPath']);
     }else {
-      $httpResponse['images'] = "これはエラー" . asset($value['folderPath']);
-      // $httpResponse['images'] = "これはエラー" . "public\storage\photo1_2.png";
+      $httpResponse['images'] = "これはエラー" . $value['folderPath'];
     }
 
     array_push($responseBody,$httpResponse);

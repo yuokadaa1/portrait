@@ -10,6 +10,7 @@
 
   <div class="container">
     <div class="form-group">
+      <p class="text-center bg-info">注意：登録する写真の一番目はサムネイル。</p>
       <div class="form-inline">
         <label class="col-sm-3 control-label" for="username">モデル情報：</label>
         <input type="text" class="col-sm-2 form-control" name="modelId" placeholder="モデルID">

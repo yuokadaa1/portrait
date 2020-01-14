@@ -28,6 +28,9 @@ switch ($_SERVER['SERVER_NAME'] ?? 'localhost') {
     case 'localhost':
         $app->loadEnvironmentFrom('.env.local');
         break;
+    default:
+        $app->loadEnvironmentFrom('.env');
+        break;
 }
 
 /*

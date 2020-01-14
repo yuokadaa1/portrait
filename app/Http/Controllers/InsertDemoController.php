@@ -29,6 +29,7 @@ class InsertDemoController extends Controller{
   public function finish(\App\Http\Requests\InsertDemoRequest $request){
 
     $i = 0;
+    $saveDate = date("YmdHis");
     foreach ($request->file()['input'] as $index) {
       //ファイルをサーバに格納
       // $file_name = $index->getClientOriginalName();
@@ -37,14 +38,15 @@ class InsertDemoController extends Controller{
       // storeas は stringにしか使えない（base64はNGの）模様
       // $folderPath = $index->storeAs('public',$file_name);
 
+      $image = base64_encode(file_get_contents($index->getRealPath()));
       //本当は格納時点でbase64したいのだが、格納後解凍がうまくいかないので素のままにする。
-      // $image = base64_encode(file_get_contents($index->getRealPath()));
-      $image = file_get_contents($index->getRealPath());
+      // $image = file_get_contents($index->getRealPath());
 
       //これで書き込まれるものは「storage\app\」配下
-      Storage::disk("local")->put("public/" . $file_name,$image);
+      // Storage::disk("local")->put("public/" . $file_name,$image);
+      Storage::disk("public")->put($file_name,$image);
       // $folderPath = "storage/app/public/" . $file_name;
-      // pathはシンボリックリンクのほうをせていする。
+      // pathはシンボリックリンクのほうを指定する。
       $folderPath = "storage/" . $file_name;
 
       //格納した位置情報などをDBに格納
@@ -53,6 +55,8 @@ class InsertDemoController extends Controller{
       $post->modelIdNum = $modelIdNum;
       $post->kbnid = $request->textarea[$i];
       $post->folderPath = $folderPath;
+      if($i == 0)$post->thumbnailFlg = 1 ;
+      $post->date = $saveDate;
       $post->save();
       $i++;
     }

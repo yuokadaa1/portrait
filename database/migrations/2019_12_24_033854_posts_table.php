@@ -21,7 +21,8 @@ class PostsTable extends Migration
           $table->smallInteger('kbnId')->default(0);
           // $table->string('kbnName')->default('');
           $table->string('folderPath')->nullable();
-          $table->date('date')->nullable();
+          $table->boolean('thumbnailFlg')->default(false);
+          $table->string('date')->nullable();
           $table->boolean('publishFlg')->default(false);
           $table->timestamps();
 
