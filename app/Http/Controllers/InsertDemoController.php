@@ -55,7 +55,7 @@ class InsertDemoController extends Controller{
       $post->modelIdNum = $modelIdNum;
       $post->kbnid = $request->textarea[$i];
       $post->folderPath = $folderPath;
-      if($i == 0)$post->thumbnailFlg = 1 ;
+      if($i == 0)$post->thumbnailFlg = true ;
       $post->date = $saveDate;
       $post->save();
       $i++;

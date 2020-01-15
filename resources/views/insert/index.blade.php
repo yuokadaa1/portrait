@@ -10,10 +10,10 @@
 
   <div class="container">
     <div class="form-group">
-      <p class="text-center bg-info">注意：登録する写真の一番目はサムネイル。</p>
+      <p class="text-center bg-info">登録する写真の一番目はサムネイル。</p>
       <div class="form-inline">
         <label class="col-sm-3 control-label" for="username">モデル情報：</label>
-        <input type="text" class="col-sm-2 form-control" name="modelId" placeholder="モデルID">
+        <input type="number" class="col-sm-2 form-control" name="modelId" placeholder="モデルID">
       </div>
     </div>
   </div>
@@ -23,7 +23,7 @@
       <div class="form-inline box" data-formno="0">
         <label class="col-sm-3 control-label" for="username">登録する写真：</label>
         <lavel class="no">1</lavel>
-        <input type="text" name="textarea[0]" class="col-sm-1 form-control toiawase" placeholder="kbn">
+        <input type="number" name="textarea[0]" class="col-sm-1 form-control toiawase" placeholder="kbn">
         <input type="file" id="file" name="input[0]" class="col-sm-4 form-control namae">
         <a class="btn btn-primary addformbox">追加</a>
         <a class="btn btn-warning deletformbox">削除</a>
@@ -64,15 +64,10 @@
   <div class="container">
     <div class="form-group">
       <div class="form-inline">
-        <label class="col-sm-3 control-label" for="username">追加するモデル情報：</label>
+        <label class="col-sm-3 control-label" for="username">追加するモデル：</label>
         <input type="text" class="col-sm-4 form-control" name="modelName" placeholder="モデル名">
+        <input type="submit" name="button1" value="送信" class="btn btn-success btn-wide" />
       </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10 text-center">
-      <input type="submit" name="button1" value="送信" class="btn btn-success btn-wide" />
     </div>
   </div>
 
@@ -103,15 +98,10 @@
   <div class="container">
     <div class="form-group">
       <div class="form-inline">
-        <label class="col-sm-3 control-label" for="username">追加する区分情報：</label>
+        <label class="col-sm-3 control-label" for="username">追加する区分：</label>
         <input type="text" class="col-sm-4 form-control" name="kbnName" placeholder="区分名">
+        <input type="submit" name="button1" value="送信" class="btn btn-success btn-wide" />
       </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10 text-center">
-      <input type="submit" name="button1" value="送信" class="btn btn-success btn-wide" />
     </div>
   </div>
 

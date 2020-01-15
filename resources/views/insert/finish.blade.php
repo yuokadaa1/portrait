@@ -8,7 +8,6 @@
   <div class="alert alert-success" role="alert">データベースにデータを挿入しました！</div>
 
   <form action="{{ url('request') }}" method="get" class="form-horizontal">
-      {{ csrf_field() }}
       <button class="btn btn-top"> TOPへ戻る  </button>
   </form>
 
