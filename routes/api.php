@@ -70,7 +70,7 @@ Route::get("/thumbnail", function(){
   $Post = DB::select("SELECT a.modelId,b.maxNum,a.kbnId,a.folderPath,a.created_at FROM posts as a left outer join (
       Select modelId,max(modelIdNum) as maxNum,date from posts group by modelId,date) as b on a.modelId = b.modelId and a.date = b.date where a.thumbnailFlg is true order by a.created_at limit 30");
   // dd($Post);
-
+  $i = 0;
   $responseBody = array();
   foreach ($Post as $value) {
     $httpResponse = array();
@@ -84,7 +84,9 @@ Route::get("/thumbnail", function(){
     }else {
       $httpResponse['images'] = "FILE_GET_ERR";
     }
-    array_push($responseBody,$httpResponse);
+    $responseBody["No." . $i] = $httpResponse;
+    // array_push($responseBody,$httpResponse);
+    $i++;
   }
 
   $responseHeaders = ["X-Pages" => 1];
