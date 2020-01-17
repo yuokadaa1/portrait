@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use App\Post;
-use App\modelid;
-use App\modelkbn;
+use App\Modelid;
+use App\Modelkbn;
 
 /*
 |--------------------------------------------------------------------------
