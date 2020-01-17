@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\modelid;
+use App\modelkbn;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,4 +121,36 @@ Route::post("/thumbnail", function(){
     array_push($responseBody,$httpResponse);
   }
 
+});
+
+//modelidの更新有無の取得
+Route::get("/update/modelid", function(){
+  $responseBody = Modelid::max('updated_at');
+  $responseHeaders = ["X-Pages" => 1];
+  $statusCode = 200;
+  return response()->json($responseBody, $statusCode, $responseHeaders,JSON_UNESCAPED_UNICODE);
+});
+
+//modelkbnの更新有無の取得
+Route::get("/update/modelkbn", function(){
+  $responseBody = Modelkbn::max('updated_at');
+  $responseHeaders = ["X-Pages" => 1];
+  $statusCode = 200;
+  return response()->json($responseBody, $statusCode, $responseHeaders,JSON_UNESCAPED_UNICODE);
+});
+
+//modelid更新用に全件再取得
+Route::get("/modelid", function(){
+  $responseBody = Modelid::select('modelId','modelName','updated_at')->get();
+  $responseHeaders = ["X-Pages" => 1];
+  $statusCode = 200;
+  return response()->json($responseBody, $statusCode, $responseHeaders,JSON_UNESCAPED_UNICODE);
+});
+
+//modelkbn更新用に全件再取得
+Route::get("/modelkbn", function(){
+  $responseBody = Modelkbn::select('kbnId','kbnName','updated_at')->get();
+  $responseHeaders = ["X-Pages" => 1];
+  $statusCode = 200;
+  return response()->json($responseBody, $statusCode, $responseHeaders,JSON_UNESCAPED_UNICODE);
 });
