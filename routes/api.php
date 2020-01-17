@@ -147,7 +147,7 @@ Route::get("/modelid", function(){
   return response()->json($responseBody, $statusCode, $responseHeaders,JSON_UNESCAPED_UNICODE);
 });
 
-//modelkbn更新用に全件再取得
+//modelkbn更新用に全件再取得.
 Route::get("/modelkbn", function(){
   $responseBody = Modelkbn::select('kbnId','kbnName','updated_at')->get();
   $responseHeaders = ["X-Pages" => 1];
