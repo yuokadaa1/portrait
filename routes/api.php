@@ -84,8 +84,9 @@ Route::get("/thumbnail", function(){
     }else {
       $httpResponse['images'] = "FILE_GET_ERR";
     }
-    $responseBody["No." . $i] = $httpResponse;
-    // array_push($responseBody,$httpResponse);
+    //１：このNo.をつけないと連想配列=>連想配列でなく、配列=>連想配列になっちゃう
+    // $responseBody["No." . $i] = $httpResponse;
+    array_push($responseBody,$httpResponse);
     $i++;
   }
 
