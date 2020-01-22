@@ -69,7 +69,7 @@ use App\Modelkbn;
 Route::get("/thumbnail", function(){
 
   //getで来たときは直近30件分のサムネイルを返す。
-  $Post = DB::select("SELECT a.modelId,b.maxNum,a.kbnId,a.folderPath,a.created_at FROM posts as a left outer join (
+  $Post = DB::select("SELECT a.modelId,b.maxNum,a.kbnId,a.folderPath,a.date,a.created_at FROM posts as a left outer join (
       Select modelId,max(modelIdNum) as maxNum,date from posts group by modelId,date) as b on a.modelId = b.modelId and a.date = b.date where a.thumbnailFlg is true order by a.created_at limit 30");
   // dd($Post);
   $i = 0;
@@ -81,6 +81,7 @@ Route::get("/thumbnail", function(){
     $httpResponse['maxNum'] = $value->maxNum;
     $httpResponse['kbnId'] = $value->kbnId;
     // $httpResponse['kbnName'] = $value['kbnName'];
+    $httpResponse['date'] = $value->date;
     if (file_exists($value->folderPath)) {
       $httpResponse['images'] = file_get_contents($value->folderPath);
     }else {
@@ -147,7 +148,7 @@ Route::get("/modelid", function(){
   return response()->json($responseBody, $statusCode, $responseHeaders,JSON_UNESCAPED_UNICODE);
 });
 
-//modelkbn更新用に全件再取得.
+//modelkbn更新用に全件再取得
 Route::get("/modelkbn", function(){
   $responseBody = Modelkbn::select('kbnId','kbnName','updated_at')->get();
   $responseHeaders = ["X-Pages" => 1];
