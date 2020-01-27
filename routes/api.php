@@ -26,13 +26,14 @@ use App\Modelkbn;
 //  ];
 // });
 
- Route::get("/data", function(){
+ Route::get("/data/{modelId?}/{date?}", function(){
 
    //dBから情報を抽出して取得
-  $Post = Post::select('modelId','modelIdNum','kbnId','folderPath','created_at')->orderBy('kbnId', 'asc')->orderBy('created_at', 'desc')->get()->toarray();
+  $Post = Post::select('modelId','modelIdNum','kbnId','folderPath','created_at')->orderBy('kbnId', 'asc')->orderBy('created_at', 'desc')->where("modelId",$name)->where("date",$date)->get()->toarray();
 
   //理由は不明だが、apiの時はasset()を使うと読み込めない？下で実験したときはできたんだがなぁ？
   $responseBody = array();
+  $i = 0;
   foreach ($Post as $value) {
     $httpResponse = array();
     $httpResponse['modelId'] = $value['modelId'];
@@ -47,7 +48,10 @@ use App\Modelkbn;
       $httpResponse['images'] = "FILE_GET_ERR：" . $value['folderPath'];
     }
 
-    array_push($responseBody,$httpResponse);
+    // １：このNo.をつけないと連想配列=>連想配列でなく、配列=>連想配列になっちゃう
+    $responseBody["No." . $i] = $httpResponse;
+    $i++;
+    // array_push($responseBody,$httpResponse);
   }
 
   // 読み込み自体はできた->これでencodeされるのは画像のURL
@@ -89,7 +93,6 @@ Route::get("/thumbnail", function(){
     }
     // １：このNo.をつけないと連想配列=>連想配列でなく、配列=>連想配列になっちゃう
     $responseBody["No." . $i] = $httpResponse;
-    // array_push($responseBody,$httpResponse);
     $i++;
   }
 
