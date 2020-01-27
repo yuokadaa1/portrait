@@ -26,42 +26,35 @@ use App\Modelkbn;
 //  ];
 // });
 
- Route::get("/data/{modelId?}/{date?}", function(){
+// 読み込み自体はできた->これでencodeされるのは画像のURL
+// $gazo = base64_encode(asset('images/ninja_woman_face1_smile.png'));
+
+//　これで「public\images\ninja_woman_face1_smile.png」を読み込む。
+// $gazo = base64_encode(file_get_contents(asset('images/ninja_woman_face1_smile.png')));
+
+//assetでの読み込み=public => public/storageにデータを格納、呼び出しが必要。
+// dd(base64_encode(file_get_contents(asset('storage/ninja_woman_face3_sad.png'))));
+
+
+ Route::get("/data/{modelId?}/{date?}", function($modelId,$date){
 
    //dBから情報を抽出して取得
-  $Post = Post::select('modelId','modelIdNum','kbnId','folderPath','created_at')->orderBy('kbnId', 'asc')->orderBy('created_at', 'desc')->where("modelId",$name)->where("date",$date)->get()->toarray();
+  $Post = Post::select('folderPath')->orderBy('kbnId', 'asc')->orderBy('created_at', 'desc')->where('modelId',$modelId)->where('date',$date)->get()->toarray();
 
   //理由は不明だが、apiの時はasset()を使うと読み込めない？下で実験したときはできたんだがなぁ？
   $responseBody = array();
   $i = 0;
   foreach ($Post as $value) {
     $httpResponse = array();
-    $httpResponse['modelId'] = $value['modelId'];
-    // $httpResponse['modelName'] = $value['modelName'];
-    $httpResponse['modelIdNum'] = $value['modelIdNum'];
-    $httpResponse['kbnId'] = $value['kbnId'];
-    // $httpResponse['kbnName'] = $value['kbnName'];
-
     if (file_exists($value['folderPath'])) {
       $httpResponse['images'] = file_get_contents($value['folderPath']);
     }else {
       $httpResponse['images'] = "FILE_GET_ERR：" . $value['folderPath'];
     }
-
     // １：このNo.をつけないと連想配列=>連想配列でなく、配列=>連想配列になっちゃう
     $responseBody["No." . $i] = $httpResponse;
     $i++;
-    // array_push($responseBody,$httpResponse);
   }
-
-  // 読み込み自体はできた->これでencodeされるのは画像のURL
-  // $gazo = base64_encode(asset('images/ninja_woman_face1_smile.png'));
-
-  //　これで「public\images\ninja_woman_face1_smile.png」を読み込む。
-  // $gazo = base64_encode(file_get_contents(asset('images/ninja_woman_face1_smile.png')));
-
-  //assetでの読み込み=public => public/storageにデータを格納、呼び出しが必要。
-  // dd(base64_encode(file_get_contents(asset('storage/ninja_woman_face3_sad.png'))));
 
   $responseHeaders = ["X-Pages" => 1];
   $statusCode = 200;
