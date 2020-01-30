@@ -7,7 +7,7 @@
 
   <div class="alert alert-success" role="alert">データベースにデータを挿入しました！</div>
 
-  <form action="{{ url('request') }}" method="get" class="form-horizontal">
+  <form action="{{ url('request') }}" method="get" class="btn btn-success form-horizontal">
       <button class="btn btn-top"> TOPへ戻る  </button>
   </form>
 

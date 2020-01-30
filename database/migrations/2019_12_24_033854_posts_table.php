@@ -14,11 +14,16 @@ class PostsTable extends Migration
     public function up()
     {
         Schema::create('Posts', function (Blueprint $table) {
+          //主キー
           $table->increments('id');
+          //ユニークキー①：モデルさんのID
           $table->smallInteger('modelId');
-          // $table->string('modelName')->default('');
+          //ユニークキー①：一画面内で登録した写真の連番
           $table->smallInteger('modelIdNum');
-          $table->smallInteger('kbnId')->default(0);
+          //同一モデルさん何回目の登録か。AndroidのNo.Xかをカウント。
+          $table->smallInteger('modelInsertNum');
+          //KBNID,KBNNameは面倒なだけなので廃止
+          // $table->smallInteger('kbnId')->default(0);
           // $table->string('kbnName')->default('');
           $table->string('folderPath')->nullable();
           $table->boolean('thumbnailFlg')->default(false);
@@ -27,7 +32,7 @@ class PostsTable extends Migration
           $table->timestamps();
 
           $table->unique(['modelId', 'modelIdNum']);
-          $table->index('kbnId');
+          // $table->index('kbnId');
         });
     }
 

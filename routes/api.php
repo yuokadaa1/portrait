@@ -66,8 +66,12 @@ use App\Modelkbn;
 Route::get("/thumbnail", function(){
 
   //getで来たときは直近30件分のサムネイルを返す。
-  $Post = DB::select("SELECT a.modelId,b.maxNum,a.kbnId,a.folderPath,a.date,a.created_at FROM posts as a left outer join (
-      Select modelId,max(modelIdNum) as maxNum,date from posts group by modelId,date) as b on a.modelId = b.modelId and a.date = b.date where a.thumbnailFlg is true order by a.created_at limit 30");
+  $Post = DB::select("
+  SELECT a.modelId,b.maxNum,a.folderPath,a.date,a.created_at,a.modelInsertNum,c.modelName FROM posts as a
+    left outer join (
+      Select modelId,max(modelIdNum) as maxNum,date from posts group by modelId,date) as b on a.modelId = b.modelId and a.date = b.date
+    left outer join modelids as c on a.modelId = c.modelId
+      where a.thumbnailFlg is true order by a.created_at limit 30");
   // dd($Post);
   $i = 0;
   $responseBody = array();
@@ -76,7 +80,9 @@ Route::get("/thumbnail", function(){
     $httpResponse['modelId'] = $value->modelId;
     // $httpResponse['modelName'] = $value['modelName'];
     $httpResponse['maxNum'] = $value->maxNum;
-    $httpResponse['kbnId'] = $value->kbnId;
+    // $httpResponse['kbnId'] = $value->kbnId
+    $httpResponse['modelInsertNum'] = $value->modelInsertNum;
+    $httpResponse['modelName'] = $value->modelName;
     // $httpResponse['kbnName'] = $value['kbnName'];
     $httpResponse['date'] = $value->date;
     if (file_exists($value->folderPath)) {
@@ -120,34 +126,34 @@ Route::post("/thumbnail", function(){
 
 });
 
-//modelidの更新有無の取得
-Route::get("/update/modelid", function(){
-  $responseBody = Modelid::max('updated_at');
-  $responseHeaders = ["X-Pages" => 1];
-  $statusCode = 200;
-  return response()->json($responseBody, $statusCode, $responseHeaders,JSON_UNESCAPED_UNICODE);
-});
-
-//modelkbnの更新有無の取得
-Route::get("/update/modelkbn", function(){
-  $responseBody = Modelkbn::max('updated_at');
-  $responseHeaders = ["X-Pages" => 1];
-  $statusCode = 200;
-  return response()->json($responseBody, $statusCode, $responseHeaders,JSON_UNESCAPED_UNICODE);
-});
-
-//modelid更新用に全件再取得
-Route::get("/modelid", function(){
-  $responseBody = Modelid::select('modelId','modelName','updated_at')->get();
-  $responseHeaders = ["X-Pages" => 1];
-  $statusCode = 200;
-  return response()->json($responseBody, $statusCode, $responseHeaders,JSON_UNESCAPED_UNICODE);
-});
-
-//modelkbn更新用に全件再取得
-Route::get("/modelkbn", function(){
-  $responseBody = Modelkbn::select('kbnId','kbnName','updated_at')->get();
-  $responseHeaders = ["X-Pages" => 1];
-  $statusCode = 200;
-  return response()->json($responseBody, $statusCode, $responseHeaders,JSON_UNESCAPED_UNICODE);
-});
+// //modelidの更新有無の取得
+// Route::get("/update/modelid", function(){
+//   $responseBody = Modelid::max('updated_at');
+//   $responseHeaders = ["X-Pages" => 1];
+//   $statusCode = 200;
+//   return response()->json($responseBody, $statusCode, $responseHeaders,JSON_UNESCAPED_UNICODE);
+// });
+//
+// //modelkbnの更新有無の取得
+// Route::get("/update/modelkbn", function(){
+//   $responseBody = Modelkbn::max('updated_at');
+//   $responseHeaders = ["X-Pages" => 1];
+//   $statusCode = 200;
+//   return response()->json($responseBody, $statusCode, $responseHeaders,JSON_UNESCAPED_UNICODE);
+// });
+//
+// //modelid更新用に全件再取得
+// Route::get("/modelid", function(){
+//   $responseBody = Modelid::select('modelId','modelName','updated_at')->get();
+//   $responseHeaders = ["X-Pages" => 1];
+//   $statusCode = 200;
+//   return response()->json($responseBody, $statusCode, $responseHeaders,JSON_UNESCAPED_UNICODE);
+// });
+//
+// //modelkbn更新用に全件再取得
+// Route::get("/modelkbn", function(){
+//   $responseBody = Modelkbn::select('kbnId','kbnName','updated_at')->get();
+//   $responseHeaders = ["X-Pages" => 1];
+//   $statusCode = 200;
+//   return response()->json($responseBody, $statusCode, $responseHeaders,JSON_UNESCAPED_UNICODE);
+// });

@@ -18,9 +18,9 @@ $(function() {
 		namecode = namecode.replace(/input\[[0-9]{1,2}/g,'input[' + cloneno2);
 		clonecode.find('input.namae').attr('name',namecode);
 
-		var namecode2 = clonecode.find('input.toiawase').attr('name');
-		namecode2 = namecode2.replace(/textarea\[[0-9]{1,2}/g,'textarea[' + cloneno2);
-		clonecode.find('input.toiawase').attr('name',namecode2);
+		// var namecode2 = clonecode.find('input.toiawase').attr('name');
+		// namecode2 = namecode2.replace(/textarea\[[0-9]{1,2}/g,'textarea[' + cloneno2);
+		// clonecode.find('input.toiawase').attr('name',namecode2);
 
 		//HTMLに追加
 		clonecode.insertAfter($('.box:last'));
@@ -42,9 +42,9 @@ $(function() {
 			name = name.replace(/input\[[0-9]{1,2}/g,'input[' + scount);
 			$('input.namae',this).attr('name',name);
 			//input質問タイトル番号振り直し
-			var name2 = $('input.toiawase',this).attr('name');
-			name2 = name2.replace(/textarea\[[0-9]{1,2}/g,'textarea[' + scount);
-			$('input.toiawase',this).attr('name',name2);
+			// var name2 = $('input.toiawase',this).attr('name');
+			// name2 = name2.replace(/textarea\[[0-9]{1,2}/g,'textarea[' + scount);
+			// $('input.toiawase',this).attr('name',name2);
 			scount += 1;
 		});
 	});
