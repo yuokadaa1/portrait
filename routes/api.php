@@ -36,10 +36,10 @@ use App\Modelkbn;
 // dd(base64_encode(file_get_contents(asset('storage/ninja_woman_face3_sad.png'))));
 
 
- Route::get("/data/{modelId?}/{date?}", function($modelId,$date){
+ Route::get("/data/{modelId?}/{modelInsertNum?}", function($modelId,$modelInsertNum){
 
    //dBから情報を抽出して取得
-  $Post = Post::select('folderPath')->orderBy('kbnId', 'asc')->orderBy('created_at', 'desc')->where('modelId',$modelId)->where('date',$date)->get()->toarray();
+  $Post = Post::select('folderPath')->orderBy('created_at', 'desc')->where('modelId',$modelId)->where('modelInsertNum',$modelInsertNum)->get()->toarray();
 
   //理由は不明だが、apiの時はasset()を使うと読み込めない？下で実験したときはできたんだがなぁ？
   $responseBody = array();
