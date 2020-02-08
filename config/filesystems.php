@@ -65,7 +65,8 @@ return [
         ],
 
         'sftp' => [
-          'driver' => 'sftp',
+          // 'driver' => 'sftp',
+          'driver' => 'ftp',
           'host' => 'a123456789b.webcrow.jp',
           'username' => 'a123456789b.webcrow.jp',
           'password' => '5bwb0apw',
