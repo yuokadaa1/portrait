@@ -66,7 +66,7 @@ return [
 
         'sftp' => [
           'driver' => 'sftp',
-          'host' => 'http://a123456789b.webcrow.jp/',
+          'host' => 'a123456789b.webcrow.jp',
           'username' => 'a123456789b.webcrow.jp',
           'password' => '5bwb0apw',
           // 'privateKey' => '（プライベートキーへのパス）',
