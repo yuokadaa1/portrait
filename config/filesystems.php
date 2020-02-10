@@ -71,7 +71,7 @@ return [
           'username' => 'a123456789b.webcrow.jp',
           'password' => '5bwb0apw',
           // 'privateKey' => '（プライベートキーへのパス）',
-          // 'port' => 22,
+          // 'port' => 21,
           // 'root' => '/home/username/storage',
           'timeout' => 30,
         ],
