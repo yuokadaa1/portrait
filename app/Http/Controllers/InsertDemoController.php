@@ -45,14 +45,17 @@ class InsertDemoController extends Controller{
       $image = base64_encode(file_get_contents($index->getRealPath()));
 
       //サーバーネームを見て、Herokuだったらレンタルサーバーに保存
-      if($_SERVER['SERVER_NAME'] == "portrait531.herokuapp.com"){
-        Storage::disk("sftp")->put($file_name,$image);
-      }else{
+      //本番稼働するまでは凍結。Herokuではエラーになったから判定はできている模様。
+      // if($_SERVER['SERVER_NAME'] == "portrait531.herokuapp.com"){
+      //   Storage::disk("sftp")->put($file_name,$image);
+      // }else{
+
         //これで書き込まれるものは「storage\app\」配下
         // Storage::disk("local")->put("public/" . $file_name,$image);
         Storage::disk("public")->put($file_name,$image);
         // $folderPath = "storage/app/public/" . $file_name;
-      }
+
+      // }
 
       $folderPath = "storage/" . $file_name;
       //格納した位置情報などをDBに格納
